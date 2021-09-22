@@ -2,10 +2,28 @@
 	controllerName="sap.ui.demo.basicTemplate.controller.Home"
 	displayBlock="true"
 	xmlns="sap.m"
-	xmlns:mvc="sap.ui.core.mvc">
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:core="sap.ui.core"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:l="sap.ui.layout">
 	<Page
 		id="page"
 		title="{i18n>title}">
-		<content></content>
+		<content>
+			<f:SimpleForm
+				columnsXL="2"
+				columnsL="2"
+				columnsM="2"
+				singleContainerFullSize="false">
+				<core:Title text="Books"/>
+				<Combobox id="booksSelect" selectionChange="onBookSelect" items="{state>/books}">
+					<core:Item key="{state>id}" text="{state>title}" />
+				</Combobox>
+				<core:Title text="Authors"/>
+				<Combobox id="authorsSelect" selectedKey="{state>/selectedAuthorId}" items="{state>/selectedBookAuthors}">
+					<core:Item key="{state>id}" text="{state>lastName} {state>firstName}" />
+				</Combobox>
+			</f:SimpleForm>
+		</content>
 	</Page>
 </mvc:View>
